@@ -8,7 +8,7 @@
     ```shell
     docker build -t denodo:7.0-express .
     ```
-3. Create Self Signed Keystore
+3. Create Self Signed Keystore. To be able to use this you will need to set your program to trust it. For testing purposes I suggest you avoid it but removing the lines begining with "-e" from the step 4.
     ```shell
     keytool -genkey -keyalg RSA -alias selfsigned -keystore keystore.jks -storepass changeit -keypass changeit -validity 360 -keysize 2048
     ```
@@ -24,6 +24,9 @@
         -v $(pwd)/keystore.jks:/tmp/keystore.jks \
         -v $(pwd)/keystore.jks:/tmp/truststore.jks \
         -p 9999:9999 \
+        -p 9997:9997 \
         -p 9996:9996 \
+        -p 9090:9090 \
+        -h localhost \
         denodo:7.0-express
     ```

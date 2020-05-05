@@ -13,6 +13,7 @@ RUN apt-get update && \
     cp /tmp/denodo.lic ${DENODO_HOME} && \
     chmod 755 ${DENODO_HOME}/denodo-install-7.0/installer_cli.sh && \
     ${DENODO_HOME}/denodo-install-7.0/installer_cli.sh install --autoinstaller /tmp/denodo-response.xml && \
+    rm -rf ${DENODO_HOME}/denodo-install-7.0/ && \
     groupadd -r -g 1001 denodo && \
     useradd -r -u 1001 -g denodo denodo
     
