@@ -21,7 +21,6 @@ replaceProperty() {
 # DENODO_SSL_TRUSTSTORE
 # DENODO_SSL_TRUSTSTORE_PASS
 setupSecurity() {
-    local PROPS=${DENODO_HOME}/conf/vdp/VDBConfiguration.properties
     if [[ ${DENODO_SSL_ENABLED:=false} = true ]]
     then
         echo "INFO: Enabling SSL"
@@ -31,11 +30,35 @@ setupSecurity() {
             echo "ERROR: DENODO_SSL_KEYSTORE, DENODO_SSL_KEYSTORE_PASS, DENODO_SSL_TRUSTSTORE and DENODO_SSL_TRUSTSTORE_PASS are required."
             exit 1
         else
-            replaceProperty ${PROPS} com.denodo.security.ssl.enabled ${DENODO_SSL_ENABLED}
-            replaceProperty ${PROPS} com.denodo.security.ssl.keyStore ${DENODO_SSL_KEYSTORE}
-            replaceProperty ${PROPS} com.denodo.security.ssl.keyStorePassword ${DENODO_SSL_KEYSTORE_PASS}
-            replaceProperty ${PROPS} com.denodo.security.ssl.trustStore ${DENODO_SSL_TRUSTSTORE}
-            replaceProperty ${PROPS} com.denodo.security.ssl.trustStorePassword ${DENODO_SSL_TRUSTSTORE_PASS}
+            FILE=${DENODO_HOME}/conf/vdp/VDBConfiguration.properties
+            replaceProperty ${FILE} com.denodo.security.ssl.enabled ${DENODO_SSL_ENABLED}
+            replaceProperty ${FILE} com.denodo.security.ssl.keyStore ${DENODO_SSL_KEYSTORE}
+            replaceProperty ${FILE} com.denodo.security.ssl.keyStorePassword ${DENODO_SSL_KEYSTORE_PASS}
+            replaceProperty ${FILE} com.denodo.security.ssl.trustStore ${DENODO_SSL_TRUSTSTORE}
+            replaceProperty ${FILE} com.denodo.security.ssl.trustStorePassword ${DENODO_SSL_TRUSTSTORE_PASS}
+
+            FILE=${DENODO_HOME}/conf/scheduler/ConfigurationParameters.properties
+            replaceProperty ${FILE} com.denodo.security.ssl.enabled ${DENODO_SSL_ENABLED}
+            replaceProperty ${FILE} com.denodo.security.ssl.keyStore ${DENODO_SSL_KEYSTORE}
+            replaceProperty ${FILE} com.denodo.security.ssl.keyStorePassword ${DENODO_SSL_KEYSTORE_PASS}
+            replaceProperty ${FILE} com.denodo.security.ssl.trustStore ${DENODO_SSL_TRUSTSTORE}
+            replaceProperty ${FILE} com.denodo.security.ssl.trustStorePassword ${DENODO_SSL_TRUSTSTORE_PASS}
+
+            FILE=${DENODO_HOME}/conf/arn-index/ConfigurationParameters.properties
+            replaceProperty ${FILE} com.denodo.security.ssl.enabled ${DENODO_SSL_ENABLED}
+            replaceProperty ${FILE} com.denodo.security.ssl.keyStore ${DENODO_SSL_KEYSTORE}
+            replaceProperty ${FILE} com.denodo.security.ssl.keyStorePassword ${DENODO_SSL_KEYSTORE_PASS}
+            replaceProperty ${FILE} com.denodo.security.ssl.trustStore ${DENODO_SSL_TRUSTSTORE}
+            replaceProperty ${FILE} com.denodo.security.ssl.trustStorePassword ${DENODO_SSL_TRUSTSTORE_PASS}
+
+            FILE=${DENODO_HOME}/resources/apache-tomcat/conf/tomcat.properties
+            replaceProperty ${FILE} com.denodo.security.ssl.enabled ${DENODO_SSL_ENABLED}
+            replaceProperty ${FILE} com.denodo.tomcat.http.port 0
+            replaceProperty ${FILE} com.denodo.tomcat.https.port 9443
+            replaceProperty ${FILE} com.denodo.security.ssl.keyStore ${DENODO_SSL_KEYSTORE}
+            replaceProperty ${FILE} com.denodo.security.ssl.keyStorePassword ${DENODO_SSL_KEYSTORE_PASS}
+            replaceProperty ${FILE} com.denodo.security.ssl.trustStore ${DENODO_SSL_TRUSTSTORE}
+            replaceProperty ${FILE} com.denodo.security.ssl.trustStorePassword ${DENODO_SSL_TRUSTSTORE_PASS}
         fi
     else
         return 0

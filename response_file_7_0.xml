@@ -4,7 +4,7 @@
     <com.izforge.izpack.panels.LicencePanel id="UNKNOWN (com.izforge.izpack.panels.LicencePanel)"/>
     <com.izforge.izpack.panels.UserInputPanel id="UNKNOWN (com.izforge.izpack.panels.UserInputPanel)">
         <userInput>
-            <entry key="LICENSE_FILE" value="/opt/denodo/denodo.lic"/>
+            <entry key="LICENSE_FILE" value=""/>
             <entry key="SETUP_TYPE" value="custom"/>
             <entry key="INSTALL_PATH" value="/opt/denodo"/>
         </userInput>
@@ -24,7 +24,7 @@
         <pack name="itpilotadmin" selected="false"/>
         <pack name="client" selected="false"/>
         <pack name="Scheduler" selected="true"/>
-        <pack name="scheduleradmin" selected="false"/>
+        <pack name="scheduleradmin" selected="true"/>
         <pack name="schedulerserver" selected="true"/>
         <pack name="indexerserver" selected="true"/>
     </com.izforge.izpack.panels.DenodoTreePacksPanel>
